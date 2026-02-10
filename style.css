@@ -1,0 +1,33 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: #FCFCFB;
+}
+
+.hero {
+    background-color: #F7F7F5;
+    height: 250px;
+    display: flex;
+    flex-direction: row;
+}
+
+.hero-img {
+    width: 350px;
+    height: auto;
+
+}
+
+main {
+    margin: 50px;
+    color: black;
+}
+
+.content {
+
+    border-top: 2px solid black;
+
+}
