@@ -18,16 +18,50 @@
     <main>
         <div class="controls">
             <h2>List of Books</h2>
-            <a href="">Add Book</a>
+            <button type="button" id="addbook-btn">Add Book</button>
         </div>
         <div class="content-grid">
-            <div class="card">
+            <!-- <div class="card">
                 <h3>Rambo</h3>
                 <h4>Author: <span class="muted"> S. Stallon</span></h4>
                 <h4>Pages: <span class="muted"> 324</span></h4>
                 <h4>Status: <span class="muted"> Not read</span></h4>
-            </div>
+            </div> -->
         </div>
+        <dialog id="addbook-dialog">
+            <div class="dialog-content">
+                <h2>Add a Book</h2>
+
+                <form id="addbook-form" autocomplete="off">
+                    <div class="form-content form-title-div">
+                        <label for="form-title">Book Title: </label>
+                        <input type="text" name="title" id="form-title" required>
+                    </div>
+                    <div class="form-content form-author-div">
+                        <label for="form-author">Author: </label>
+                        <input type="text" name="author" id="form-author" required>
+                    </div>
+                    <div class="form-content form-pages-div">
+                        <label for="form-pages">Number of Pages: </label>
+                        <input type="number" name="number" id="form-pages" required>
+                    </div>
+                    <fieldset class="form-content form-status-radiobtn">
+                        <legend>Reading Status</legend>
+                        <div class=" form-read-status-div">
+                            <input type="radio" name="status" id="form-read" value="Read" required>
+                            <label for="form-read">Read</label>
+                        </div>
+                        <div class="form-notread-status-div">
+                            <input type="radio" name="status" id="form-notread" value="Not read" required>
+                            <label for="form-notread">Not Read</label>
+                        </div>
+                    </fieldset>
+                    <button type="submit" id="submit-form-btn" value="Add Book">Add</button>
+                </form>
+                <button class="close-btn" value="Close" name="Close">X</button>
+            </div>
+        </dialog>
+
     </main>
 </body>
 

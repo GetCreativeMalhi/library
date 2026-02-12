@@ -19,71 +19,119 @@ Book.prototype.info = function(){
 
 function addBookToLibrary(id, title, author, pages, readStatus){
     const book = new Book(id, title, author, pages, readStatus);
-    
-            myLibrary.push(book);
-          
-        
+            myLibrary.push(book);        
+            readArrayDisplayBooks(myLibrary);
 }
 
-function readArrayDisplayBooks(array){
-    var rObjTitle = "";
-    var rObjAuthor = "";
-    var rObjPages = "";
-    var rObjStatus = "";
-    const contentGrid = document.querySelector(".content-grid");
-
-    for(const bookObj of myLibrary){
-        rObjAuthor = bookObj.author;
-        rObjTitle = bookObj.title;
-        rObjPages = bookObj.pages;
-        rObjStatus = bookObj.readStatus;
-
-        const card = document.createElement("div");
-        card.classList.add("card");
-
-        const cardTitle = document.createElement("h3");
-        const cardAuthor = document.createElement("h4");
-        const cardPages = document.createElement("h4");
-        const cardStatus = document.createElement("h4");
-
-
-        const cardAuthorSpan = document.createElement("span");
-        const cardPagesSpan = document.createElement("span");
-        const cardStatusSpan = document.createElement("span");
-
-        cardAuthorSpan.classList.add("muted");
-        cardPagesSpan.classList.add("muted");
-        cardStatusSpan.classList.add("muted");
-
-        cardAuthorSpan.textContent = rObjAuthor;
-        cardPagesSpan.textContent = rObjPages;
-        cardStatusSpan.textContent = rObjStatus;
-        cardTitle.textContent = rObjTitle;
-        cardAuthor.textContent = "Author: ";
-        cardPages.textContent = "Pages: ";
-        cardStatus.textContent = "Status: ";
-
-        cardAuthor.appendChild(cardAuthorSpan);
-        cardPages.appendChild(cardPagesSpan);
-        cardStatus.appendChild(cardStatusSpan);
-
-        card.appendChild(cardTitle);
-        card.appendChild(cardAuthor);
-        card.appendChild(cardPages);
-        card.appendChild(cardStatus);
-
-        contentGrid.appendChild(card);
-    }
+function readArrayDisplayBooks(myLibrary){
+        const contentGrid = document.querySelector(".content-grid");
+       const childToRemove = document.querySelectorAll(".card");
+       childToRemove.forEach(c => {
+            c.remove();
+       })
+    //    childToRemove.remove();
+      
+        var rObjTitle = "";
+        var rObjAuthor = "";
+        var rObjPages = "";
+        var rObjStatus = "";
+        
+        for(const bookObj of myLibrary){
+            rObjAuthor = bookObj.author;
+            rObjTitle = bookObj.title;
+            rObjPages = bookObj.pages;
+            rObjStatus = bookObj.readStatus;
+            const card = document.createElement("div");
+            card.classList.add("card");
+            const cardTitle = document.createElement("h3");
+            const cardAuthor = document.createElement("h4");
+            const cardPages = document.createElement("h4");
+            const cardStatus = document.createElement("h4");
+            const cardAuthorSpan = document.createElement("span");
+            const cardPagesSpan = document.createElement("span");
+            const cardStatusSpan = document.createElement("span");
+            cardAuthorSpan.classList.add("muted");
+            cardPagesSpan.classList.add("muted");
+            cardStatusSpan.classList.add("muted");
+            cardAuthorSpan.textContent = rObjAuthor;
+            cardPagesSpan.textContent = rObjPages;
+            cardStatusSpan.textContent = rObjStatus;
+            cardTitle.textContent = rObjTitle;
+            cardAuthor.textContent = "Author: ";
+            cardPages.textContent = "Pages: ";
+            cardStatus.textContent = "Status: ";
+            cardAuthor.appendChild(cardAuthorSpan);
+            cardPages.appendChild(cardPagesSpan);
+            cardStatus.appendChild(cardStatusSpan);
+            card.appendChild(cardTitle);
+            card.appendChild(cardAuthor);
+            card.appendChild(cardPages);
+            card.appendChild(cardStatus);
+            contentGrid.appendChild(card);
+        }
+       
+    
 
 }; 
 
-addBookToLibrary(crypto.randomUUID(), 'The Hobbit', 'J. R. R. Tolkien', 295, 'Not read');
-addBookToLibrary(crypto.randomUUID(), 'The Hobbit', 'J. R. R. Tolkien', 295, 'Not read');
-addBookToLibrary(crypto.randomUUID(), 'The Hobbit', 'J. R. R. Tolkien', 295, 'Not read');
-addBookToLibrary(crypto.randomUUID(), 'The Hobbit', 'J. R. R. Tolkien', 295, 'Not read');
-addBookToLibrary(crypto.randomUUID(), 'The Hobbit', 'J. R. R. Tolkien', 295, 'Not read');
-addBookToLibrary(crypto.randomUUID(), 'The Hobbit', 'J. R. R. Tolkien', 295, 'Not read');
-addBookToLibrary(crypto.randomUUID(), 'The Hobbit', 'J. R. R. Tolkien', 295, 'Not read');
-addBookToLibrary(crypto.randomUUID(), 'The Hobbit', 'J. R. R. Tolkien', 295, 'Not read');
-addBookToLibrary(crypto.randomUUID(), 'The Hobbit', 'J. R. R. Tolkien', 295, 'Not read');
-readArrayDisplayBooks(myLibrary);
+
+const addBookBtn = document.querySelector("#addbook-btn");
+const dialog = document.querySelector("#addbook-dialog");
+const closeBtn = document.querySelector(".close-btn");
+
+addBookBtn.addEventListener("click", () => {
+    dialog.showModal();
+});
+
+
+
+function readFormAddBook(){
+    var formTitleInput;
+    var formAuthorInput;
+    var formPagesInput;
+    var formReadStatusInput;
+    const form = document.querySelector("#addbook-form");
+
+
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        
+        formTitleInput= document.querySelector("#form-title").value;
+        
+
+        formAuthorInput = document.querySelector("#form-author").value;
+        
+
+       formPagesInput= document.querySelector("#form-pages").value;
+
+        if(document.querySelector("#form-read").checked){
+            formReadStatusInput = document.querySelector("#form-read").value;
+        } else {
+            formReadStatusInput = document.querySelector("#form-notread").value;
+        }
+       
+        if (myLibrary.find(book => book.title === formTitleInput) &&  myLibrary.find(book => book.author === formAuthorInput)){
+            alert("This book aready exists in the Library");
+           
+            
+        } else {
+            addBookToLibrary(crypto.randomUUID(), formTitleInput, formAuthorInput, formPagesInput, formReadStatusInput);}
+        formTitleInput = "";
+        formAuthorInput = "";
+        formPagesInput = "";
+        formReadStatusInput = "";
+        
+       
+        
+        dialog.close();
+       document.getElementById("addbook-form").reset();
+    });
+    
+}
+readFormAddBook();
+
+closeBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    dialog.close();
+});
+

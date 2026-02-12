@@ -35,7 +35,7 @@ main {
     color: #1F1F1F;
 }
 
-.controls a {
+.controls button {
     text-decoration: none;
     color: #1F1F1F;
     border: 1px solid #E9E9E6;
@@ -45,7 +45,7 @@ main {
     border-radius: 10px;
 }
 
-.controls a:hover {
+.controls button:hover {
     background-color: #f7f7f5;
     border: 1px solid #DADAD6;
     color: #3F3F3F;
@@ -84,4 +84,14 @@ main {
     background-color: #f7f7f5;
     border: 1px solid #DADAD6;
 
+}
+
+#addbook-dialog {
+    margin: auto;
+    padding: 3rem;
+}
+
+#addbook-dialog::backdrop {
+    background-color: hsl(210 10% 20% / 0.35);
+    backdrop-filter: blur(1.5px);
 }
