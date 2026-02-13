@@ -95,3 +95,7 @@ main {
     background-color: hsl(210 10% 20% / 0.35);
     backdrop-filter: blur(1.5px);
 }
+
+.card button {
+    margin-top: 10px;
+}

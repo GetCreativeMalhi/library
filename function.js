@@ -23,6 +23,27 @@ function addBookToLibrary(id, title, author, pages, readStatus){
             readArrayDisplayBooks(myLibrary);
 }
 
+function removeBook(event){
+    console.log("********************");
+    console.log(event.target.parentElement.dataset.id);
+    console.log("********************");
+
+    const removeCardId = event.target.parentElement.dataset.id;
+    const removeBookId = myLibrary.findIndex(book =>{
+       return book.id === removeCardId;
+    })
+
+    console.log("********************");
+    console.log(removeBookId);
+    console.log("********************");
+    console.log("********************");
+    console.log(myLibrary);
+    console.log("********************");
+    myLibrary.splice(removeBookId, 1);
+    readArrayDisplayBooks(myLibrary);
+
+};
+
 function readArrayDisplayBooks(myLibrary){
         const contentGrid = document.querySelector(".content-grid");
        const childToRemove = document.querySelectorAll(".card");
@@ -35,14 +56,17 @@ function readArrayDisplayBooks(myLibrary){
         var rObjAuthor = "";
         var rObjPages = "";
         var rObjStatus = "";
+        var rObjId = "";
         
         for(const bookObj of myLibrary){
             rObjAuthor = bookObj.author;
             rObjTitle = bookObj.title;
             rObjPages = bookObj.pages;
             rObjStatus = bookObj.readStatus;
+            rObjId = bookObj.id;
             const card = document.createElement("div");
             card.classList.add("card");
+            card.dataset.id = rObjId;
             const cardTitle = document.createElement("h3");
             const cardAuthor = document.createElement("h4");
             const cardPages = document.createElement("h4");
@@ -50,6 +74,7 @@ function readArrayDisplayBooks(myLibrary){
             const cardAuthorSpan = document.createElement("span");
             const cardPagesSpan = document.createElement("span");
             const cardStatusSpan = document.createElement("span");
+            const removeBtn = document.createElement("button");
             cardAuthorSpan.classList.add("muted");
             cardPagesSpan.classList.add("muted");
             cardStatusSpan.classList.add("muted");
@@ -60,6 +85,7 @@ function readArrayDisplayBooks(myLibrary){
             cardAuthor.textContent = "Author: ";
             cardPages.textContent = "Pages: ";
             cardStatus.textContent = "Status: ";
+            removeBtn.textContent = "Remove";
             cardAuthor.appendChild(cardAuthorSpan);
             cardPages.appendChild(cardPagesSpan);
             cardStatus.appendChild(cardStatusSpan);
@@ -67,12 +93,15 @@ function readArrayDisplayBooks(myLibrary){
             card.appendChild(cardAuthor);
             card.appendChild(cardPages);
             card.appendChild(cardStatus);
+            card.appendChild(removeBtn);
             contentGrid.appendChild(card);
+
+            removeBtn.addEventListener("click", removeBook);
         }
        
-    
-
 }; 
+
+
 
 
 const addBookBtn = document.querySelector("#addbook-btn");
