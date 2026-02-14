@@ -23,22 +23,29 @@ function addBookToLibrary(id, title, author, pages, readStatus){
             readArrayDisplayBooks(myLibrary);
 }
 
-function removeBook(event){
-    console.log("********************");
-    console.log(event.target.parentElement.dataset.id);
-    console.log("********************");
+function checkReadStatus(event){
+    const findParentCardId = event.target.closest(".card").dataset.id;
+    const findIndex = myLibrary.findIndex(book => {
+        return book.id === findParentCardId;
+    });
 
-    const removeCardId = event.target.parentElement.dataset.id;
+
+    if (findIndex === -1) return;
+    if(event.target.checked){
+        myLibrary[findIndex].readStatus = "Read";
+    }else{
+        myLibrary[findIndex].readStatus = "Unread";
+    }
+    console.log(myLibrary[findIndex].readStatus);
+    readArrayDisplayBooks(myLibrary);
+};
+
+function removeBook(event){
+    const removeCardId = event.target.closest('.card').dataset.id;
     const removeBookId = myLibrary.findIndex(book =>{
        return book.id === removeCardId;
-    })
-
-    console.log("********************");
-    console.log(removeBookId);
-    console.log("********************");
-    console.log("********************");
-    console.log(myLibrary);
-    console.log("********************");
+    });
+    if (removeBookId === -1) return;
     myLibrary.splice(removeBookId, 1);
     readArrayDisplayBooks(myLibrary);
 
@@ -68,12 +75,23 @@ function readArrayDisplayBooks(myLibrary){
             card.classList.add("card");
             card.dataset.id = rObjId;
             const cardTitle = document.createElement("h3");
+            cardTitle.classList.add("card-heading");
             const cardAuthor = document.createElement("h4");
+            cardAuthor.classList.add("card-heading");
             const cardPages = document.createElement("h4");
             const cardStatus = document.createElement("h4");
             const cardAuthorSpan = document.createElement("span");
             const cardPagesSpan = document.createElement("span");
             const cardStatusSpan = document.createElement("span");
+            const cardCheckbox = document.createElement("input");
+            const statusWrapper = document.createElement("div");
+            statusWrapper.classList.add("status-wrapper");
+            cardCheckbox.setAttribute("type", "checkbox");
+            if (bookObj.readStatus === "Read"){
+                cardCheckbox.checked = true;
+            }else {
+                cardCheckbox.checked = false;
+            }
             const removeBtn = document.createElement("button");
             cardAuthorSpan.classList.add("muted");
             cardPagesSpan.classList.add("muted");
@@ -89,10 +107,14 @@ function readArrayDisplayBooks(myLibrary){
             cardAuthor.appendChild(cardAuthorSpan);
             cardPages.appendChild(cardPagesSpan);
             cardStatus.appendChild(cardStatusSpan);
+            statusWrapper.appendChild(cardStatus);
+            statusWrapper.appendChild(cardCheckbox);
             card.appendChild(cardTitle);
             card.appendChild(cardAuthor);
             card.appendChild(cardPages);
-            card.appendChild(cardStatus);
+            card.appendChild(statusWrapper);
+            
+            cardCheckbox.addEventListener("click", checkReadStatus);
             card.appendChild(removeBtn);
             contentGrid.appendChild(card);
 
@@ -134,9 +156,9 @@ function readFormAddBook(){
        formPagesInput= document.querySelector("#form-pages").value;
 
         if(document.querySelector("#form-read").checked){
-            formReadStatusInput = document.querySelector("#form-read").value;
+            formReadStatusInput = "Read";
         } else {
-            formReadStatusInput = document.querySelector("#form-notread").value;
+            formReadStatusInput = "Unread";
         }
        
         if (myLibrary.find(book => book.title === formTitleInput) &&  myLibrary.find(book => book.author === formAuthorInput)){
