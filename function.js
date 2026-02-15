@@ -89,13 +89,15 @@ function readArrayDisplayBooks(myLibrary){
             cardCheckbox.setAttribute("type", "checkbox");
             if (bookObj.readStatus === "Read"){
                 cardCheckbox.checked = true;
+                cardStatusSpan.classList.add("status-green");
             }else {
                 cardCheckbox.checked = false;
+                cardStatusSpan.classList.add("status-red");
             }
             const removeBtn = document.createElement("button");
             cardAuthorSpan.classList.add("muted");
             cardPagesSpan.classList.add("muted");
-            cardStatusSpan.classList.add("muted");
+            
             cardAuthorSpan.textContent = rObjAuthor;
             cardPagesSpan.textContent = rObjPages;
             cardStatusSpan.textContent = rObjStatus;

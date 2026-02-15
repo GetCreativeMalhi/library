@@ -36,7 +36,7 @@
                 <form id="addbook-form" autocomplete="off">
                     <div class="form-content form-title-div">
                         <label for="form-title">Book Title: </label>
-                        <input type="text" name="title" id="form-title" required>
+                        <input type="text" name="title" id="form-title" autofocus required>
                     </div>
                     <div class="form-content form-author-div">
                         <label for="form-author">Author: </label>
@@ -44,9 +44,9 @@
                     </div>
                     <div class="form-content form-pages-div">
                         <label for="form-pages">Number of Pages: </label>
-                        <input type="number" name="number" id="form-pages" required>
+                        <input type="number" min="1" step="1" id="form-pages" required>
                     </div>
-                    <fieldset class="form-content form-status-radiobtn">
+                    <fieldset class="form-status-checkbox">
                         <legend>Reading Status</legend>
                         <div class=" form-read-status-div">
                             <input type="checkbox" name="status" id="form-read" value="Read">
@@ -55,7 +55,7 @@
                     </fieldset>
                     <button type="submit" id="submit-form-btn" value="Add Book">Add</button>
                 </form>
-                <button class="close-btn" value="Close" name="Close">X</button>
+                <div class="cancel-dialog"><button class="close-btn" value="Close" name="Close">X</button></div>
             </div>
         </dialog>
 

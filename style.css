@@ -89,15 +89,6 @@ main {
 
 }
 
-#addbook-dialog {
-    margin: auto;
-    padding: 3rem;
-}
-
-#addbook-dialog::backdrop {
-    background-color: hsl(210 10% 20% / 0.35);
-    backdrop-filter: blur(1.5px);
-}
 
 .status-wrapper {
     display: flex;
@@ -113,7 +104,7 @@ main {
 .status-wrapper span {
     display: inline-block;
     width: 60px;
-    background-color: antiquewhite;
+
 }
 
 .card-heading {
@@ -122,4 +113,79 @@ main {
     white-space: normal;
     min-width: 0;
     overflow-wrap: anywhere;
+}
+
+#addbook-dialog {
+    margin: auto;
+    padding: 3rem;
+}
+
+#addbook-dialog::backdrop {
+    background-color: hsl(210 10% 20% / 0.35);
+    backdrop-filter: blur(1.5px);
+}
+
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.form-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.form-status-checkbox {
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+
+.dialog-content h2 {
+    border-bottom: 2px solid #2E2E2E;
+    margin-bottom: 20px;
+}
+
+#submit-form-btn {
+    padding: 5px 35px;
+    margin-bottom: 10px;
+}
+
+.cancel-dialog {
+    display: flex;
+    flex-direction: row;
+
+    justify-content: flex-end;
+}
+
+.cancel-dialog button {
+    border: 1px solid #E9E9E6;
+    background: #FAFAF8;
+    font-weight: 500;
+    font-size: 20px;
+    padding: 6px;
+    color: #1F1F1F;
+    border-radius: 50%;
+    cursor: pointer;
+    line-height: 1;
+
+}
+
+.cancel-dialog button:hover {
+    color: #1F1F1F;
+    border: 1px solid #DADAD6;
+}
+
+.status-green {
+
+    color: #1E7A34;
+
+}
+
+.status-red {
+
+    color: #555555;
+
 }
