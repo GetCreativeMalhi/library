@@ -117,7 +117,17 @@ main {
 
 #addbook-dialog {
     margin: auto;
-    padding: 3rem;
+    padding: 0;
+    border: 1px solid #E9E9E6;
+    border-radius: 16px;
+    background: #FCFCFB;
+    overflow: hidden;
+}
+
+#addbook-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
 #addbook-dialog::backdrop {
@@ -128,36 +138,81 @@ main {
 .dialog-content {
     display: flex;
     flex-direction: column;
+    gap: 12px;
+    padding: 24px;
 
 }
 
 .form-content {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 0;
 }
+
+.form-content label {
+    color: #1F1F1F;
+    font-weight: 500;
+}
+
+.form-content input {
+    width: 240px;
+    padding: 10px 12px;
+    border: 1px solid #E9E9E6;
+    border-radius: 10px;
+    background: #FAFAF8;
+    color: #1F1F1F;
+    outline: none;
+}
+
+.form-content input:focus {
+    border-color: #DADAD6;
+    background: #F7F7F5;
+}
+
 
 .form-status-checkbox {
-    padding: 15px;
-    margin-bottom: 10px;
+    border: 1px solid #E9E9E6;
+    border-radius: 12px;
+    padding: 12px;
+    background: #FAFAF8;
 }
 
+.form-status-checkbox legend {
+    padding: 0 6px;
+    color: #5A5A5A;
+    font-weight: 500;
+}
 
 .dialog-content h2 {
-    border-bottom: 2px solid #2E2E2E;
-    margin-bottom: 20px;
+    margin: 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #E9E9E6;
+    color: #1F1F1F;
 }
 
 #submit-form-btn {
-    padding: 5px 35px;
-    margin-bottom: 10px;
+    border: 1px solid #E9E9E6;
+    background-color: #FAFAF8;
+    color: #1F1F1F;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#submit-form-btn:hover {
+    background-color: #F7F7F5;
+    border-color: #DADAD6;
+    color: #3F3F3F;
 }
 
 .cancel-dialog {
     display: flex;
-    flex-direction: row;
-
     justify-content: flex-end;
+    margin: -8px -8px 0 0;
+
 }
 
 .cancel-dialog button {
@@ -166,7 +221,7 @@ main {
     font-weight: 500;
     font-size: 20px;
     padding: 6px;
-    color: #1F1F1F;
+    color: #5A5A5A;
     border-radius: 50%;
     cursor: pointer;
     line-height: 1;
@@ -175,7 +230,8 @@ main {
 
 .cancel-dialog button:hover {
     color: #1F1F1F;
-    border: 1px solid #DADAD6;
+    border-color: #DADAD6;
+    background-color: #F7F7F5;
 }
 
 .status-green {
